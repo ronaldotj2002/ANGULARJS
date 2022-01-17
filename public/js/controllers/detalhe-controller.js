@@ -16,7 +16,8 @@ angular.module('fotosMarvel').controller('DetalheController', function($scope, $
             $scope.dados = [];
             if($scope.detalhe) {
                 $scope.dados = $scope.detalhe.data.results[0].comics.items.map(function (valor) {
-                    return valor.resourceURI + `?ts=1&apikey=${apikey}&hash=${hash}`
+                    // erro CORS
+                    return valor.resourceURI.replace('http', 'https') + `?ts=1&apikey=${apikey}&hash=${hash}`
                 })               
               
                 for(var i = 0; i < $scope.dados.length; i++) {
@@ -25,7 +26,7 @@ angular.module('fotosMarvel').controller('DetalheController', function($scope, $
                         $scope.listaQuadrinhos.push(res.data.data.results[0]);                       
                     })
                 }
-                
+                console.log("lista", $scope.listaQuadrinhos)
             }
             
         }).catch(function (error) {
