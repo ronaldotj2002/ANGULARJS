@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-12">
+        <form class="mt-5">
+            <input ng-model="filtro" ng-model-options="{debounce: 500}" type="text" class="form-control filtro-input shadow" placeholder="Filtrar pelo nome">
+        </form>
+    </div>
+</div>
+
+<div class="row justify-content-between">
+    <card-fotos class="col-md-4 mt-5" ng-repeat="foto in fotos.data.results | filter:filtro">
+        <!-- <img style="width: 100%" class="img-responsive center-block" src="{{ foto.thumbnail.path }}.{{ foto.thumbnail.extension }}"/>                 -->
+        <img src="{{ foto.thumbnail.path }}.{{ foto.thumbnail.extension }}" class="card-img-top img-card">
+        <p class="card-text text-center titulo-card">{{ foto.name }}</p>
+        <a href="fotos/detalhe/{{foto.id}}" class="btn btn-dark">Mais detalhes</a>
+        
+    </card-fotos>
+</div>

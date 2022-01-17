@@ -1,0 +1,73 @@
+<div ng-repeat="info in detalhe.data.results">
+    <div class="row detalhe-cabecalho">
+        <div class="col-md-3 mt-5">
+            <img class="img-responsive rounded-circle img-top-detalhe" src="{{ info.thumbnail.path }}.{{ info.thumbnail.extension }}"/>
+        </div>
+        <div class="col-md-9 mt-5">
+            <p class="titulo-detalhe text-center">{{ info.name }}</p>
+            <p class="text-center">{{ info.description }}</p>  
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-3 mt-3 transicao" ng-repeat="quadrinhos in listaQuadrinhos">
+            <a href="" ng-click="carregarInfo(quadrinhos)" data-toggle="modal" data-target="#detalheModal">
+                <img class="img-responsive rounded img-detalhe shadow-lg"  src="{{ quadrinhos.thumbnail.path }}.{{ quadrinhos.thumbnail.extension }}"/>
+                <p class="titulo-quadrinho mt-3">{{ quadrinhos.title }}</p>
+            </a>
+        </div>
+    </div>
+    <a href="fotos/detalhe" class="btn btn-dark mt-5 btn-voltar">Voltar</a>  
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="detalheModal" tabindex="-1" role="dialog" aria-labelledby="detalheModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detalheModalLabel">{{detalheQuadrinho.title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                      <img src="{{ detalheQuadrinho.thumbnail.path }}.{{detalheQuadrinho.thumbnail.extension}}"  class="img-responsive"/>
+                    
+                      <p class="mt-3 ml-3">isbn: {{ detalheQuadrinho.isbn }}</p>
+                      <p class="ml-3">issn: {{ detalheQuadrinho.issn }}</p>
+                      <hr>
+                      <p class="mt-3 ml-3" ng-repeat="preco in detalheQuadrinho.prices">
+                          price: {{ preco.price | currency }} <br>
+                          type: {{ preco.type }}
+                        </p>
+                     
+
+                  </div>
+                  <div class="col-md-8 ">
+                      <div class="row">
+                        <div class="col-md-6 ml-5">
+                            <h3>Creators</h3>
+                            <p ng-repeat="creator in detalheQuadrinho.creators.items" >Name: {{creator.name}} <br>
+                                Role: {{creator.role}}</p>
+                        </div>
+                        <div class="col-md-6"></div>
+                      </div>
+                      
+                      
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{ detalheQuadrinho.description }}</p>
+                  </div>
+            </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar Modal</button>
+        </div>
+      </div>
+    </div>
+  </div>
